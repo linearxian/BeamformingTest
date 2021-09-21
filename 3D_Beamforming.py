@@ -20,15 +20,15 @@ micgeofile = 'array_9.xml'
 
 m = MicGeom( from_file=micgeofile )
 
-ts = MaskedTimeSamples( name="46.h5", invalid_channels=[9] )
+ts = MaskedTimeSamples( name="44.h5", invalid_channels=[9] )
 
 g = RectGrid3D(x_min=-0.2, x_max=4, 
                y_min=-0.2, y_max=4, 
                z_min=0, z_max=2, 
                increment=0.02)
 
-# in the range 2000 - 6000 Hz (5*400 - 15*400)
 # 50 hz for 1024 block size, because 51200/1024=50
+# 40*50 - 160*50 for range 2000 hz to 8000 hz
 
 f = PowerSpectra(time_data=ts, 
                  window='Hanning', 
