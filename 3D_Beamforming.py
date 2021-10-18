@@ -20,7 +20,7 @@ micgeofile = 'array_9.xml'
 
 m = MicGeom( from_file=micgeofile )
 
-ts = MaskedTimeSamples( name="44.h5", invalid_channels=[9] )
+ts = MaskedTimeSamples( name="/media/xian/Data/dataset/Bekaert/h5files/44.h5", invalid_channels=[9] )
 
 g = RectGrid3D(x_min=-0.2, x_max=4, 
                y_min=-0.2, y_max=4, 
@@ -35,7 +35,7 @@ f = PowerSpectra(time_data=ts,
                  overlap='50%', 
                  block_size=1024, 
                  ind_low=40, ind_high=160)
-st = SteeringVector(grid=g, mics=m, steer_type='true location') 
+st = SteeringVector(grid=g, mics=m, steer_type='true location', ref=[1.88,1.87,1.68]) 
 b = BeamformerBase(freq_data=f, steer=st)
 
 map = b.synthetic(5000,1)
@@ -56,8 +56,8 @@ title('Top view (xy)' )
 
 subplot(223)
 map_y = sum(map,1)
-imshow(L_p(map_y.T), vmax=mx, vmin=mx-20, origin='upper', interpolation='nearest', 
-       extent=(g.x_min, g.x_max, g.z_max, g.z_min))
+imshow(L_p(map_y.T), vmax=mx, vmin=mx-20, origin='lower', interpolation='nearest', 
+       extent=(g.x_min, g.x_max, g.z_min, g.z_max))
 xlabel('x')
 ylabel('z')
 title('Side view (xz)' )
