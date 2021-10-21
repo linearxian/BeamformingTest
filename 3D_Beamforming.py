@@ -34,11 +34,11 @@ f = PowerSpectra(time_data=ts,
                  window='Hanning', 
                  overlap='50%', 
                  block_size=1024, 
-                 ind_low=40, ind_high=160)
+                 ind_low=200, ind_high=360)
 st = SteeringVector(grid=g, mics=m, steer_type='true location', ref=[1.88,1.87,1.68]) 
 b = BeamformerBase(freq_data=f, steer=st)
 
-map = b.synthetic(5000,1)
+map = b.synthetic(15000,1)
 
 
 fig=figure(1,(8,8))
